@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;500;600;700;800&family=Prata&family=Shadows+Into+Light&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background:rgb(214, 224, 233);
+    position: relative;
+}
+
+.divsec{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    z-index: 1;
+    background:white;
+    width: 55vw;
+}
+
+.divsec .image-section{
+    background: url(../images/background/Pasted\ image.png) no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.divsec .image-section::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;   
+    background: rgba(10, 10, 10, 0.5);
+    z-index: 1;
+}
+
+.divsec .image-section .textArea, .textArea2{
+    height: 50%;
+    width: 100%;
+    background-color: aliceblue;
+    z-index: 5;
+    position: absolute;
+    padding: 30px;
+    display: grid;
+    place-items: center;
+
+}
+
+.image-section .textArea2{
+    bottom: 0;
+    background: transparent;
+    color:aliceblue;
+}
+
+.image-section .textArea2 span{
+    text-align: center;
+    line-height: 2em;
+    font-family: 'Shadows Into Light', sans-serif;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    font-size: 1.3em;
+}
+
+.divsec .image-section .textArea h3{
+    font-size: 1.9em;
+  color: transparent;
+  background: linear-gradient(90deg,  rgb(36, 140, 226), rgb(219, 127, 247));
+  -webkit-background-clip: text;
+
+}
+
+.divsec .image-section #img-preview{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid lightgrey;
+}
+
+.form-section{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background: transparent;
+    padding: 20px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+    padding: 15px 40px;
+    z-index: 2;
+  }
+  
+.logo img{
+    width: 60px;
+    height: 60px;
+    animation: rotate 10s infinite ease-out;
+    animation-direction: linear;
+  }
+  
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px 30px;
+    gap: 17px;
+}
+
+form#login h3{
+    text-align: center;
+}
+
+form#login .input-sect{
+    margin: 10px 0;
+
+}
+
+.form-section form h3{
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.form-section form .input-sect{
+    height: 45px;
+    border: none;
+    position: relative;
+    background: transparent;
+  
+  }
+  
+  .form-section form .input-sect input{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    background: transparent;
+    padding: 2%;
+    border: 1px solid lightgrey;
+    cursor: pointer;
+    border-radius: 7px;
+
+  }
+
+  .input-sect label, legend{
+    font-size: 0.9em;
+    letter-spacing: 0.0;
+    color: rgb(71, 69, 69)
+  }
+  
+  .form-section form .input-sect label{
+    position: absolute;
+    bottom: 110%;
+    left: 2%;
+    transition: 0.5s;
+    
+  }
+
+  .form-section form .input-sect input:focus{
+    border: 1.8px solid rgb(219, 127, 247);
+  }
+  
+ form .input-sect input:focus~label{
+    color: rgb(219, 127, 247);
+
+  }
+  
+fieldset{
+    padding: 15px;
+    border: 1px solid lightgrey;
+    border-radius: 7px;
+}
+
+form input[type="submit"]{
+    height: 50px;
+    font-size: 1.15em;
+    font-weight: 500;
+    border: none;
+    transition: 0.3s;
+    color: aliceblue;
+    border-radius: 7px;
+    background: rgb(155, 89, 231);
+    transition: background 0.4s;
+}
+
+form input[type="submit"]:hover{
+    background: linear-gradient(120deg, rgb(80, 158, 247), rgb(155, 89, 231))
+}
+
+form .form-link{
+    text-align: center;
+    color:rgb(71, 69, 69);
+}
+
+form .form-link a{
+    text-decoration: none;
+    color:rgb(155, 89, 231)
+}
+
+/* remember-forgot */
+
+.remember-forgot{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.remember-forgot label{
+    color:rgb(71, 69, 69);
+}
+
+.error-msg, .success-msg{
+    font-size: 0.9em;
+    width: 100%;
+    color:rgb(223, 76, 84);
+    text-align: right;
+}
+
+.success-msg{
+    color: rgb(98, 199, 120)
+}
+
+.msg{
+    text-align: center;
+}
