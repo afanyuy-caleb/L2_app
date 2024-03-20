@@ -108,6 +108,7 @@
       <div class="products">
 
         <?php
+          if($courses):
           foreach($courses as $course):
         ?>
         <div class="productFrame">
@@ -118,7 +119,8 @@
           </div>
         </div>
 
-        <?php endforeach ?>
+        <?php endforeach;
+        endif; ?>
         <div class="category">
           category
         </div>

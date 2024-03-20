@@ -211,11 +211,11 @@
         public function InsertUser(){
 
             try{
-                $insert = "INSERT INTO users(name, email, passhash, DOB, profile_pic) VALUES (?, ?, ?, ?, ?)";
+                $insert = "INSERT INTO users(name, email, passhash, DOB, profile_pic, role_id) VALUES (?, ?, ?, ?, ?, ?)";
 
                 $stmt = $this->conn->prepare($insert);
     
-                $stmt->bind_param("sssss", $this->name, $this->email, $this->pass, $this->dob, $this->prof_pic);
+                $stmt->bind_param("sssssi", $this->name, $this->email, $this->pass, $this->dob, $this->prof_pic, 2);
 
                 $stmt->execute();
     

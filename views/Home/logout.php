@@ -3,6 +3,6 @@
 
     session_destroy();
 
-    echo "You have logged out successfully. Click here to <a href='../auth/index.php'> Login </a>";
+   header("Location: ../index.php");
 
 ?>

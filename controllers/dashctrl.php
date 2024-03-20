@@ -1,5 +1,5 @@
 <?php
-    $conn = require __DIR__ . './../db/dbconn.php';
+    $conn = require __DIR__ . '/../db/dbconn.php';
 
     function selectProducts(){
         global $conn;

@@ -7,6 +7,11 @@
     }
 
     $userInfo = $_SESSION['userInfo'];
+
+    if($userInfo['role_id'] != 1){
+        header("Location: ./homepage.php");
+        exit();
+    }
     
     include_once './../../controllers/dashctrl.php';
 
@@ -148,6 +153,7 @@
                         <th>Action</th>
                     </tr>
                     <?php 
+                        if($courses):
                         foreach($courses as $course): 
                         $price = $course['price'] / 100;
                     ?>
@@ -169,7 +175,8 @@
                                 </form>
                             </td>     
                         </tr>
-                    <?php endforeach ?>
+                    <?php endforeach;
+                    endif; ?>
 
                 </table>
             </div>

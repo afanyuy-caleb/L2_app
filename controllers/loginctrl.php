@@ -44,9 +44,16 @@
 
                 unset($result['passhash']);
                 $_SESSION['userInfo'] = $result;
-                header("Location: ../views/Home/dashboard.php");
 
-                exit();
+                if($result['role_id'] == 1){
+                    header("Location: ../views/Home/dashboard.php");
+                    exit();
+
+                }
+                else{}{
+                    header("Location: ../views/Home/homepage.php");
+                    exit();
+                }
             }
             else{
 
