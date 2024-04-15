@@ -65,7 +65,7 @@ class Course_Controller{
             'msg' => "Error {$type} course"
         );
         
-        header("Location: ../Home/dashboard.php"); 
+        header("Location: /dashboard"); 
         exit();
     }
 
@@ -75,7 +75,7 @@ class Course_Controller{
             'msg' => "File {$type} successfully"
         );
         
-        header("Location: ../Home/dashboard.php"); 
+        header("Location: /dashboard"); 
         exit();
     }
     
@@ -110,13 +110,18 @@ class Course_Controller{
     function updateFile($elms, $files){
 
         $course_pic = $this->pic_obj->profilePicHandler($files, "products");
+        $tmp_dir = $files['tmp_name'];
+
         $category = strtolower($elms['category']);
         $elms['cat_id'] = $this->checkCategory($category, "updating");
 
         $state = $this->course_obj->update_Course($elms, $course_pic);
-        if($state)
+        if($state){
+            // Upload the image to the img_dir
+            $targetDir =  "assets/images/course_images/{$course_pic}";
+            move_uploaded_file($tmp_dir, $targetDir);
             $this->successDisplay("updated");
-
+        }
         else
             $this->errorDisplay("updating");
     }

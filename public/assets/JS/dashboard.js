@@ -1,9 +1,6 @@
 // Modal functionality
 
 $(document).ready(function (){
-
-    console.log(document.URL)
-
     const modal = document.querySelector('.modal');
 
     let courseInfo = null;
@@ -32,7 +29,7 @@ $(document).ready(function (){
 
     async function getInfo(id){
         try {
-            const resp = await $.get("courseInfo.php", { id });
+            const resp = await $.get("assets/data/courseInfo.php", { id });
             if (resp) {
                 courseInfo = JSON.parse(resp)
                 
