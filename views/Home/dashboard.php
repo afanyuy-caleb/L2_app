@@ -1,43 +1,70 @@
 <?php
     session_start();
 
+    $relative_dir = explode('\\', $_SERVER['DOCUMENT_ROOT']);
+    array_pop($relative_dir);
+    $relative_dir = implode('\\', $relative_dir);
+
+    require_once $relative_dir . '\config\class_autoloader.inc.php';
+
     if(!isset($_SESSION['userInfo'])){
-        header("Location: ../auth/index.php");
+
+        header("Location: /index");
         exit();
     }
 
     $userInfo = $_SESSION['userInfo'];
 
     if($userInfo['role_id'] != 1){
-        header("Location: ./homepage.php");
+
+        header("Location: /homepage");
         exit();
     }
-    
-    include_once './../../controllers/dashctrl.php';
 
-    $_SESSION['list'] = $categories = selectCategories();
-    $_SESSION['courses'] = $courses = selectProducts();
+    $obj = new Course_Controller();
+    $cat_obj = new Category_Controller();
+    
+    $_SESSION['list'] = $categories = $cat_obj->getCategories();
+    $courses = $obj->getCourses();
+
+    if(isset($_POST['add']) && isset($_FILES['course_img']['name'])){
+
+        if($_POST['option'] === "edit"){
+            $obj->updateFile($_POST, $_FILES['course_img']);
+    
+        }
+        else{
+            $obj->addFile($_POST, $_FILES['course_img']);
+        }
+    
+    }
+    else if(isset($_POST['delete'])){
+        $obj->deleteFile($_POST['hiddenID']);
+    
+    }
+
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png" href="assets/images/logo/logo1.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
 
-    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
     
     <!-- link to font awesome icons -->
-    <link rel="stylesheet" href="../assets/font/css/all.css">
+    <link rel="stylesheet" href="assets/font/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 
     <header>
         <div class="logo">
-            <img src="../assets/images/logo/logo5.jpg" alt="">
+            <img src="assets/images/logo/logo5.jpg" alt="">
             <h3>Hackers <span>Hub</span></h3>
         </div>
 
@@ -55,7 +82,7 @@
         <div class="userProfile">
 
             <h3 class="username"><?= $userInfo['name']?></h3>
-            <img src="../assets/images//profile-pics/<?= $userInfo['profile_pic']?>" alt="">
+            <img src="assets/images//profile-pics/<?= $userInfo['profile_pic']?>" alt="">
         </div>
     </header>
 
@@ -64,7 +91,7 @@
             <div class="icons">
 
                 <div class="navLink">
-                    <a href="./homepage.php">
+                    <a href="/homepage">
                         <i class="fas fa-home"></i>
 
                     </a>
@@ -73,7 +100,7 @@
                     </span>
                 </div>
                 <div class="navLink">
-                    <a href="./homepage.php#about">
+                    <a href="../homepage.php#about">
                         <i class="fas fa-user"></i>
                     </a>
                     <span>
@@ -109,7 +136,7 @@
             </div>
 
             <div class="navLink">
-                <a href="./logout.php">
+                <a href="/logout">
                     <i class="fas fa-power-off"></i>
 
                 </a>
@@ -159,18 +186,19 @@
                     ?>
                         <tr>
                             <td>
-                                <img src="../assets/images/course_images/<?= $course['pic']?>" alt="">
+                                <img src="assets/images/course_images/<?= $course['pic']?>" alt="">
                             </td>
                             <td> <?= $course['pd_name']?> </td>
                             <td> $<?= $price?> </td>
                             <td> <?= $course['chapters']?> chapters</td>
                             <td> <?= $course['cat_name']?></td>
                             <td class="link">
-                                <form action="../../controllers/fileController.php" method="POST">
+                                <form action="" method="POST">
                                     
                                     <input type="submit" name="edit" value="Edit" data-courseID="<?=$course['pd_id']?>">
                                     
                                     <input type="submit" name="delete" value="Delete">
+                                    <input type="hidden" name="hiddenID" value="<?=$course['pd_id']?>">
 
                                 </form>
                             </td>     
@@ -191,7 +219,7 @@
                 <i class="fas fa-x"></i>
             </div>
             <img src="" alt="" id="img-preview">
-            <form action="../../controllers/fileController.php" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data">
                 <h3>Enter Course Information</h3>
 
                 <input type="hidden" id="hidden" name="option" value="add">
@@ -207,7 +235,6 @@
                     <label for="price">Price(in cents)</label>
                     </div>
                 </div>
-            
             
                 <div class="input-part">
                     
@@ -236,7 +263,6 @@
 
                 <input type="submit" name="add" value="Add" id="submit">
                 
-
             </form>
         </div>
         

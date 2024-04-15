@@ -1,11 +1,32 @@
 <?php
     session_start();
 
+    $relative_dir = explode('\\', $_SERVER['DOCUMENT_ROOT']);
+    array_pop($relative_dir);
+    $relative_dir = implode('\\', $relative_dir);
+
+    require_once $relative_dir . '\config\class_autoloader.inc.php';
+
+    if(isset($_POST['register'])){
+
+        // Instantiate the user
+  
+        if($_FILES['prof-pic']['error'] != 0){
+            $user = new Register_Controller($_POST, false);
+        }
+        else{           
+            $user = new Register_Controller($_POST, $_FILES['prof-pic']);
+        }
+    
+        $user->insertUser(); 
+                
+    }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="assets/images/logo/logo1.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
@@ -13,7 +34,7 @@
     <link rel="stylesheet" href="../assets/css/reg.css">
 
     <!-- link to font awesome icons -->
-    <link rel="stylesheet" href="../assets/font/css/all.css">
+    <link rel="stylesheet" href="assets/font/css/all.css">
 </head>
 <body>
 
@@ -41,7 +62,7 @@
                 <img src="../assets/images/logo/logo5.jpg" alt="">
             </div>
 
-            <form action="../../controllers/regctrl.php" method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data">
 
                 
                 <h3>Create your account now</h3>
@@ -114,7 +135,7 @@
 
                 <input type="submit" name="register" value="Register">
 
-                <p class="form-link">Already have an account? <a href="index.php">Login</a></p>
+                <p class="form-link">Already have an account? <a href="/login">Login</a></p>
             </form>
 
 

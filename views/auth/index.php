@@ -1,18 +1,30 @@
 <?php
     session_start();
 
+    $relative_dir = explode('\\', $_SERVER['DOCUMENT_ROOT']);
+    array_pop($relative_dir);
+    $relative_dir = implode('\\', $relative_dir);
+
+    require_once $relative_dir . '\config\class_autoloader.inc.php';
+
     if(isset($_COOKIE['email'])){
 
         $email = $_COOKIE['email'];
         $pass = $_COOKIE['pass'];
+    }
+   
+    if(isset($_POST['login'])){
 
-        die("cookies have been set");
+        $user = new Login_Controller($_POST);
+        $user->login();
+        
     }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="../assets/images/logo/logo1.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
@@ -23,7 +35,6 @@
 
 </head>
 <body>
-
 
     <div class="divsec">
         <div class="image-section">
@@ -43,7 +54,7 @@
                 <img src="../assets/images/logo/logo5.jpg" alt="">
             </div>
 
-            <form action="../../controllers/loginctrl.php" method="POST" id="login">
+            <form action="" method="POST" id="login">
 
                 <h3>Login</h3>
 
@@ -83,7 +94,7 @@
             
                 <input type="submit" name="login" value="Login">
 
-                <p class="form-link">Don't yet have an account? <a href="registration.php">Register</a></p>
+                <p class="form-link">Don't yet have an account? <a href="/register">Register</a></p>
             </form>
 
         </div>

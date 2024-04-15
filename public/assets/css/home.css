@@ -1,0 +1,194 @@
+nav #cont{
+    position: relative
+}
+
+nav #cont #counter{
+    position: absolute;
+    background: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    height: 25px;
+    width: 25px;
+    color: black;
+    border-radius: 50%;
+    top: 0;
+    right: 0;
+}
+
+.userProfile{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5%;
+    margin-left: 20px;
+}
+
+.userProfile h3{
+    white-space: nowrap;
+    font-family: 'Prata', 'Times New Roman', Times, serif;
+    letter-spacing: 0.05em;
+
+}
+
+.userProfile img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+nav hr{
+    border: none;
+    background: rgb(185, 180, 180);
+    height: 70%;
+    width: 1px;
+}
+
+.section1 .product-section{
+    padding: 0;
+    padding-top: 10%;
+    gap: 4%;
+    position: relative;
+
+}
+
+.section1 .product-section .products::-webkit-scrollbar{
+    display: none;
+}
+
+.section1 .product-section h3{
+    font-size: 2em;
+}
+
+.section1 .product-section .products{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    background: rgba(80, 78, 78, 0.3);
+    padding: 3%;
+    bottom: 0;
+    overflow: scroll;
+    gap: 8%
+
+}
+
+.product-section .products .productFrame{
+    height: 220px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+}
+
+.product-section .products .productFrame a{
+    width: 100%;
+    height: 80%;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-section .products .productFrame a .desc{
+    position: absolute;
+    height: 100%;
+    top: 0;
+    width: 100%;
+    right: 0;
+    background: rgba(31, 53, 53, 0.9);
+    display: grid;
+    place-content: center;
+    transform: translateY(100%);
+    transition: transform 0.4s;
+}
+
+.products .productFrame a:hover .desc{
+    transform: translateY(0)
+}
+
+.productFrame .exists{
+    position: absolute;
+    bottom: -15%;
+}
+
+.productFrame a .desc input[type="submit"]{
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s
+}
+
+.productFrame a .desc input[type="submit"]:hover{
+    background:rgb(185, 180, 180)
+}
+
+.product-section .products .productFrame img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.products .category-div{
+    position: absolute;
+    right: 0;
+    top: 14%;
+    z-index: 5;
+    padding: 8px 10px;
+    background: aliceblue;
+    color: #302c2c;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 180px;
+
+}
+
+.products .category-div i{
+    font-size: 0.8em;
+}
+
+.products .category-div .category{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+    overflow: hidden;
+    gap: 6px 
+}
+
+.products .category-div .cats{
+    background: aliceblue;
+    display: none;
+    transition: display 0.3s
+}
+
+.category-div .cats #sub{
+    padding: 8px 10px;
+    width: 160px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-align: right;
+    z-index: 10;
+    background: none;
+}
+
+.cats #sub:hover{
+    background: rgb(50, 117, 203);
+    color: aliceblue;
+}
+
+.products .category-div:hover .cats{
+    display: block;
+}

@@ -1,11 +1,16 @@
 <?php
   session_start();
+  $relative_dir = explode('\\', $_SERVER['DOCUMENT_ROOT']);
+  array_pop($relative_dir);
+  $relative_dir = implode('\\', $relative_dir);
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+  <link rel="icon" type="image/png" href="./assets/images/logo/logo1.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My first L2 App</title>
@@ -17,9 +22,9 @@
 
   <!-- Scroll reveal link and typed js -->
 
-  <script src="../node_modules/scrollreveal/dist/scrollreveal.min.js"></script>
+  <script src="assets/node_modules/scrollreveal/dist/scrollreveal.min.js"></script>
   
-  <script src="../node_modules/typed.js/dist/typed.umd.js"></script>
+  <script src="assets/node_modules/typed.js/dist/typed.umd.js"></script>
 
 </head>
 <body>
@@ -89,15 +94,15 @@
     <div class="form-section">
       <h3>Get Started</h3>
       <div class="buttons">
-        <a href="auth/index.php">Login</a>
-        <a href="auth/registration.php">Sign Up</a>
+        <a href="/login">Login</a>
+        <a href="/register">Sign Up</a>
       </div>
     </div>
   </section>
 
   <?php
     $path = '';
-    include_once './include.php'
+    include_once $relative_dir . '\views\include.php'
 
   ?>
   
